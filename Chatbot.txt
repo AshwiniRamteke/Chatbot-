@@ -1,0 +1,58 @@
+import re
+
+# Define a function to respond to user inputs
+def chatbot_response(user_input):
+    # Convert the user input to lowercase for case-insensitive matching
+    user_input = user_input.lower()
+    
+     # Check if the user's input contains a math-related keyword
+    if re.search(r'\b(math|calculate|solve)\b', user_input):
+        math_expression = re.search(r'\b\d+(\.\d+)?[+\-*/]\d+(\.\d+)?\b', user_input)
+        if math_expression:
+            try:
+                result = eval(math_expression.group())
+                return f"The result of {math_expression.group()} is {result}"
+            except:
+                return "Sorry, I couldn't calculate that."
+            
+# Use regular expressions to match user queries
+    if  re.search(r'\bhello\b', user_input):
+        return "Hello! How can I help you today?"
+    
+    elif re.search(r'\bname\b', user_input):
+        return "I'm a chatbot. What's your name?"
+    
+    elif re.search(r'\bhelp\b', user_input):
+        return "I can answer questions and provide information."
+    
+    elif re.search(r'\bweather\b', user_input):
+        return "The weather today is sunny with a high of 35°C."
+    
+    elif re.search(r'\bforecast\b', user_input):
+        return "The weather forecast for the week is sunny and warm."
+    
+    elif  re.search(r'\brain\b', user_input):
+        return "No, there is no rain expected tomorrow."
+    
+    elif re.search(r'\btemperature\b', user_input):
+        return "The current temperature is 35°c."
+    
+    elif re.search(r'\bpresident\b',user_input):
+        return "The current president of India is Droupadi Murmu"
+    
+    elif re.search(r'\bcontinent\b',user_input):
+        return "There are seven continents on Earth." 
+
+    else:
+        return "I'm sorry, I don't understand your question."
+
+
+while True:
+    user_input = input("You: ")
+    
+    if user_input.lower() == 'ok Bye':
+        print("Chatbot: Goodbye!Have nice day.")
+        break
+    
+    response = chatbot_response(user_input)
+    print("Chatbot:", response)
